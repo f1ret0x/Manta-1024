@@ -15,25 +15,33 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            user-select: none;
-            padding: 10px; /* Adds space on edges */
+            /* REMOVED user-select: none so text CAN be selected */
         }
+        
         .container {
             text-align: center;
             max-width: 800px;
             padding: 20px;
-            width: 100%; /* Ensures it fits on narrow screens */
+            width: 100%;
             box-sizing: border-box;
         }
+
         p {
             margin: 10px 0;
             line-height: 1.4;
+            transition: color 0.2s ease; /* Smooth transition for hover effect */
+        }
+
+        /* Hover effect to help users see what they are selecting */
+        p:hover {
+            color: #ffffff; /* Lightens text slightly on hover */
+            cursor: text;   /* Changes cursor to indicate selectable text */
         }
         
         /* Mobile-specific adjustments */
         @media (max-width: 600px) {
             body {
-                font-size: 14px; /* Smaller base font for phones */
+                font-size: 14px;
             }
             .container {
                 padding: 10px;
@@ -79,7 +87,6 @@
             const ip = await getVisitorInfo();
             const userAgent = navigator.userAgent;
             
-            // Check if it's likely a mobile device
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
             const deviceType = isMobile ? "📱 Mobile" : "💻 Desktop";
 
